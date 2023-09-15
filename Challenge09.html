@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>마우스 클릭 연습</title>
+<style>
+table {
+  border : 1px solid blue;
+  border-collapse : collapse;
+  height : 1000px;
+  width : 1000px;
+}
+td {
+  border : 1px solid blue;
+}
+td img {
+  width:100px;
+  height:100px;
+}
+</style>
+<script>
+var source = "https://images.chosun.com/resizer/R0ihD1zol5TOMU_4E0Ep8H9zFJ8=/300x472/smart/cloudfront-ap-northeast-1.images.arcpublishing.com/chosun/EX2RFBLHJJ4IWCW6PRKT7Y56SM.jpg"
+function moveImage() {
+  var images = document.images
+  images[78].src = source;
+  for (var i=0; i<images.length; i++) {
+    images[i].onclick = function (e) {
+      if (e.target.src!="") {
+        e.target.src="";
+        var random = Math.floor(Math.random() * images.length);
+        images[random].src=source;
+      }
+    }
+  }
+}
+</script>
+</head>
+<body onload="moveImage()">
+<h3>마우스 클릭 연습</h3>
+<hr>
+<table>
+  <tr><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td></tr>
+  <tr><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td></tr>
+  <tr><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td></tr>
+  <tr><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td></tr>
+  <tr><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td></tr>
+  <tr><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td></tr>
+  <tr><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td></tr>
+  <tr><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td></tr>
+  <tr><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td></tr>
+  <tr><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td><td><img src=""></td></tr>
+  
+  
+</table>
+</body>
+</html>

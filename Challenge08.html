@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>갬블링 게임</title>
+<style>
+p {
+    display : inline-block;
+    font-style: oblique 10px sans-serif;
+    color : darkblue;
+}
+</style>
+<script>
+var checked = ["false", "false", "false"]
+function startGame() {
+    
+}
+function clickNumber(obj) {
+    
+    obj.innerHTML = Math.floor(Math.random()*(3));
+
+}
+var first = document.getElementById("first");
+var second = document.getElementById("second");
+var third = document.getElementById("third");
+if (obj==first && checked[0]=="false") {
+    obj.innerHTML = Math.floor(Math.random()*(3));
+}
+
+if (checked == ["true", "true", "true"]) {
+    finishGame();
+}
+function finishGame() {
+    
+    if (first.innerHTML==second.innerHTML && second.innerHTML==third.innerHTML && first.innerHTML==third.innerHTML) {
+        showMessage("Success")
+    }
+    else {
+        showMessage("fail")
+    }
+}
+function showMessage(result) {
+    var obj = document.getElementById("main");
+    var newDIV = document.createElment("div");
+    newDIV.innerHTML = result + "(click here to do again)";
+    newDIV.addEventListener("click", function () {startGame(); var p = this.parentElment; p.removeChild(this);})
+    obj.appendChild(newDIV);
+}
+</script>
+</head>
+<body id="main">
+<h3>갬블링 게임</h3>
+각 숫자를 클릭하면 0에서 2사이의 난수로 바뀝니다. 모두 같은 수가 나오면 승리합니다
+<hr>
+<div id="div"><p id="first">0</p><p id="second">0</p><p id="third">0</p></div>
+</body>
+</html>
