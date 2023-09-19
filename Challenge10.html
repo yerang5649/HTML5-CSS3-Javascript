@@ -8,54 +8,46 @@ body {
   background-size : 100%;
   background-repeat : no-repeat;
 }
-div img{
+div {
   position : absolute;
+  color : white;
 }
 </style>
 <script>
-var snowImage = "https://w7.pngwing.com/pngs/157/200/png-transparent-drift-stars-snowflake-icon-ice-snowflakes-template-texture-ink-thumbnail.png";
-function init() {
-  var images = document.images
-  for (var i=0; i<images.length; i++) {
-    images[i].src = snowImage;
-    //makeSnow(img);
-    //initSnow(img);
-    //var timerID = setInterval("initSnow(img)", 1000);
-  }
+var totalWidth = window.innerWidth;
+var totalHeight = window.innerHeight;
+var text="";
+function makeSnow() {
+    left = Math.floor(Math.random() * (totalWidth+1));
+    top = Math.floor(Math.random() * (totalHeight+1));
+    for (i=0; i<30; i++) {
+        text = "<div style='left:" + left + "px"+" top:" + top + "px'>*</div>";
+        document.body.innerHTML += text;
+    }
+}
+function setSnow() {
+    var div = document.getElementsByTagName("div");
+    for (i=0; i<div.length; i++) {
+        if(div[i].offsetTop < totalWidth) {
+            div[i].style.top = div[i].offsetTop + 10;
+        }
+        else {
+            initSnow(div[i]);
+        }
+    }
 }
 function initSnow(obj) {
-  var random = Math.floor(Math.random() * 101);
-  obj.style.left = random + "%"
-  obj.style.top = "0";
-}
-function setSnow(obj) {
-  var topString = obj.style.top;
-  var topInt = parseInt(topString||0, 10);
-  obj.style.top = topInt + 10 +"%";
-}
-function snowing() {
-  if (img.style.top = "100%") {
-    clearInterval(timerID);
-  }
+    left = Math.floor(Math.random() * (totalWidth+1));
+    top = Math.floor(Math.random() * (totalHeight+1));
+    obj.style.left = left;
+    obj.style.top = top;
 }
 </script>
 </head>
 <body>
-<div><img src=""></div><div><img src=""></div><div><img src=""></div><div><img src=""></div><div><img src=""></div><div><img src=""></div><div><img src=""></div><div><img src=""></div><div><img src=""></div><div><img src=""></div><div><img src=""></div><div><img src=""></div><div><img src=""></div><div><img src=""></div><div><img src=""></div><div><img src=""></div><div><img src=""></div><div><img src=""></div><div><img src=""></div><div><img src=""></div><div><img src=""></div><div><img src=""></div><div><img src=""></div><div><img src=""></div><div><img src=""></div><div><img src=""></div><div><img src=""></div><div><img src=""></div><div><img src=""></div><div><img src=""></div>
 <script>
-var images = document.images;
-for (var i=0; i<images.length; i++) {
-  img = images[i];
-  img.src = "https://w7.pngwing.com/pngs/157/200/png-transparent-drift-stars-snowflake-icon-ice-snowflakes-template-texture-ink-thumbnail.png";
-  img.style.width = "20px";
-  img.style.height = "20px";
-  var random = Math.floor(Math.random() * 101);
-  img.style.left = random + "%";
-  img.style.top = "0%";
-  var timerID = setInterval(function() {if(parseInt(img.style.top) < 100) {img.style.top = parseInt(img.style.top) + 10 + "%";} else {clearInterval(timerID);}}, 1000);
-  
-}
+makeSnow();
+setInterval("setSnow()", 10000);
 </script>
 </body>
-
 </html>
