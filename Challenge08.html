@@ -3,54 +3,78 @@
 <head>
 <title>갬블링 게임</title>
 <style>
-p {
-    display : inline-block;
-    font-style: oblique 10px sans-serif;
-    color : darkblue;
+table {
+	border : 1px solid violet;
+	border-collapse : collapse; 
+}
+td {
+	width : 50px;
+	height : 50px;
+	padding : 0px;
+	font : italic 50px consolas, sans-serif;
+	color : blue;
+	text-align : center;
+	background : linen;
 }
 </style>
+</head>
+<body>
+<h3>갬블링 게임</h3>
+<p>각 숫자를 클릭하면 0에서 2사이의 난수로 바뀝니다. 모두 같은 수가 나오면 승리합니다.</p>
+<hr>
+<table>
+    <tr>
+	    <td id="first" onclick="clickA()">0</td>
+	    <td id="second" onclick="clickB()">0</td>
+	    <td id="third" onclick="clickC()">0</td>
+    </tr>
+</table>
 <script>
-var checked = ["false", "false", "false"]
-function startGame() {
-    
-}
-function clickNumber(obj) {
-    
-    obj.innerHTML = Math.floor(Math.random()*(3));
-
-}
 var first = document.getElementById("first");
 var second = document.getElementById("second");
 var third = document.getElementById("third");
-if (obj==first && checked[0]=="false") {
-    obj.innerHTML = Math.floor(Math.random()*(3));
-}
-
-if (checked == ["true", "true", "true"]) {
-    finishGame();
-}
-function finishGame() {
-    
+var flag = [0, 0, 0]
+var text = "";
+if (flag[0] == 1 && flag[1] == 1 && flag[2] == 1) {
     if (first.innerHTML==second.innerHTML && second.innerHTML==third.innerHTML && first.innerHTML==third.innerHTML) {
-        showMessage("Success")
+        text ="Success" + text;
     }
     else {
-        showMessage("fail")
+        text = "fail" + text;
     }
+    var obj = document.getElementById("main");
+    var newDIV = document.createElment("div");
+    newDIV.innerHTML = text;
+    newDIV.addEventListener("click", function () {flag=[0, 0, 0]; var p = this.parentElment; p.removeChild(this);})
+    obj.appendChild(newDIV);
 }
 function showMessage(result) {
     var obj = document.getElementById("main");
     var newDIV = document.createElment("div");
     newDIV.innerHTML = result + "(click here to do again)";
-    newDIV.addEventListener("click", function () {startGame(); var p = this.parentElment; p.removeChild(this);})
+    newDIV.style.font = "italic 18px consolas, sans-serif";
+    newDIV.style.color = "magenta";
+    newDIV.addEventListener("click", function () {flag=[0, 0, 0]; var p = this.parentElment; p.removeChild(this);})
     obj.appendChild(newDIV);
 }
+function clickA() {
+    if (flag[0]==0) {
+        first.innerHTML= Math.floor(Math.random()*3);
+        flag[0] = 1;
+    }
+}
+function clickB() {
+    if (flag[1]==0) {
+        second.innerHTML= Math.floor(Math.random()*3);
+        flag[1] = 1;
+    }
+}
+function clickC() {
+    if (flag[2]==0) {
+        third.innerHTML= Math.floor(Math.random()*3);
+        flag[2] = 1;
+    }
+}
 </script>
-</head>
-<body id="main">
-<h3>갬블링 게임</h3>
-각 숫자를 클릭하면 0에서 2사이의 난수로 바뀝니다. 모두 같은 수가 나오면 승리합니다
-<hr>
-<div id="div"><p id="first">0</p><p id="second">0</p><p id="third">0</p></div>
 </body>
 </html>
