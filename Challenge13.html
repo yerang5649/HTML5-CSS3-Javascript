@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>오디오 리스트 연속 재생</title>
+</head>
+<body>
+<h3>오디오 리스트 연속 재생</h3>
+<hr>
+처음 play 버튼을 누르면 리스트에 있는 곡이 연속하여 자동 재생 됩니다. 마우스로 다른 곡을 선택하면 곡이 바뀝니다. next 버튼을 누르면 다음 곡으로 넘어갑니다.
+<hr>
+<audio id="audio" src="" controls></audio><br>
+<select id="select" size="3">
+    <option value="media/EmbraceableYou.mp3">EmbraceableYou</option>
+    <option value="media/MoonGlow.mp3">MoonGlow</option>
+</select>
+<button id="play">play</button>
+<button id="next">next</button>
+<div id="div">현재 연주되는 곡명이 보입니다.</div>
+<script>
+    var audio = document.getElementById("audio");
+    var play = document.getElementById("play");
+    var next = document.getElementById("next");
+    var select = document.getElementById("select");
+    var div = document.getElementById("div");
+    select.onchange = function (e) {
+        audio.src = select.options[select.selectedIndex].value;
+        audio.load();
+        audio.play();
+        div.innerHTML = audio.src + "를 재생합니다.";
+    }
+    play.onclick = function(e) {
+        select.selectedIndex = 0;
+        audio.src = select.options[select.selectedIndex].value;
+        audio.load();
+        audio.play();
+        div.innerHTML = audio.src + "를 재생합니다.";
+    }
+    next.onclick = function(e) {
+        if (select.selectedIndex < select.length-1)
+            select.selectedIndex =+ 1;
+            
+        else
+            select.selectedIndex = 0;
+        
+        audio.src = select.options[select.selectedIndex].value;
+        audio.load();
+        audio.play();
+        div.innerHTML = audio.src + "를 재생합니다.";
+    }
+    audio.onended = function(e) {
+        if (select.selectedIndex < select.length-1)
+            select.selectedIndex =+ 1;
+            
+        else
+            select.selectedIndex = 0;
+
+        audio.src = select.options[select.selectedIndex].value;
+        audio.load();
+        audio.play();
+        div.innerHTML = audio.src + "를 재생합니다.";
+    }
+</script>
+</body>
+</html>

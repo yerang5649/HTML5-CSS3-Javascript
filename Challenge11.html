@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>캔버스에 파이 차트 그리기</title>
+</head>
+<body>
+<h3>학점 별로 학생 수를 입력하면 파이 차트로 비율 그리기</h3>
+<hr>
+A <input id="A" type="number" value="0">명 B <input id="B" type="number" value="0">명 C <input id="C" type="number" value="0"><br>
+D <input id="D" type="number" value="0">명 F <input id="F" type="number" value="0">명 <input type="button" value="차트그리기" onclick="drawChart()">
+<canvas id="myCanvas" style="background-color:aliceblue" width="700" height="500"></canvas>
+<script>
+var colors = ["blue", "green", "yellow", "magenta", "red"];
+var grades = ["A", "B", "C", "D", "F"];
+
+var canvas = document.getElementById("myCanvas");
+var context = canvas.getContext("2d");
+context.strokeStyle="blue";
+
+function drawChart() {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    var total = getTotal();
+    var startAngle = 0, endAngle = 0;
+    
+    for (var i=0; i<5; i++) {
+        proportion = document.getElementById(grades[i]).value/total;
+        endAngle += getAngle(proportion);
+        //context.font = "20px";
+        context.strokeText(grades[i] + " 학점" + Math.floor(proportion*100) +"% : " + colors[i], 10, 30+i*20);
+        
+        context.beginPath();
+        context.moveTo(canvas.width/2, canvas.height/2);
+        context.arc(canvas.width/2, canvas.height/2, canvas.height/2 - 20, startAngle, endAngle);
+        context.closePath();
+        context.fillStyle = colors[i];
+        context.fill();
+        startAngle = endAngle;
+    }
+}
+function getTotal() {
+    var sum = 0;
+    for (var i=0; i<5; i++) {
+        value = parseInt(document.getElementById(grades[i]).value);
+        sum += value;
+    }
+    return sum;
+}
+function getAngle(x) {
+    var n = x*360
+    var r = n*Math.PI/180;
+    return r;
+}
+</script>
+</body>
+</html>
